@@ -1,6 +1,9 @@
 package class101.foo.io;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,14 +22,24 @@ public class PostController {
 
     // 2-1. 글 목록을 조회한다.
     @GetMapping("/posts")
-    public List<Post> getPostList() {
-        return postRepository.findAll();
+    public Page<Post> getPostList(@PageableDefault(size = 20) Pageable pageable) {
+
+        return postRepository.findAll(pageable);
     }
-    
+
+    @GetMapping("/posts/{id}")
+    public Post getPost(@PathVariable Long id) {
+
+        Post post = postRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("존재하지 않는 포스트입니다."));
+
+        return post;
+    }
+
     // 2-2 글 목록을 페이징하여 반환
-    
+
     // 3. 글 번호로 조회
-    
+
     // 4. 글 내용으로 검색 -> 해당 내용이 포함된 모든 글
 
 }
