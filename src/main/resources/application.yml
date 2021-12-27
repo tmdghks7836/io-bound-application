@@ -1,3 +1,7 @@
+
+# jenkins
+# sudo service jenkins restart
+
 #      # postgresql을 도커로 실행시키는 명령어
 #docker run --name pgsql -d -p 5432:5432 -e POSTGRES_USER=postgresql -e POSTGRES_PASSWORD=postgrespassword postgres
 #
