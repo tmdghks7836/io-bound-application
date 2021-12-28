@@ -16,8 +16,8 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
-//    @Autowired
-//    Producer producer;
+    @Autowired
+    Producer producer;
 
     @Autowired
     ObjectMapper objectMapper;
@@ -30,10 +30,10 @@ public class PostController {
     public Post createPost(@RequestBody Post post) throws JsonProcessingException {
 
         String jsonPost = objectMapper.writeValueAsString(post);
-      //  producer.sendTo(jsonPost);
+        producer.sendTo(jsonPost);
 
-//        return post;
-         return postRepository.save(post);
+        return post;
+//         return postRepository.save(post);
     }
 
     // 2-1. 글 목록을 조회한다.
