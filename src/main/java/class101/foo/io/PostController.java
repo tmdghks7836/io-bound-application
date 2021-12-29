@@ -39,7 +39,7 @@ public class PostController {
     // 2-1. 글 목록을 조회한다.
     @GetMapping(value = "/posts", params = "content")
     public Page<Post> getPostList(@PageableDefault(size = 20) Pageable pageable,
-                                  @RequestParam(name = "content") String content) {
+                                  @RequestParam(name = "content", required = false) String content) {
 
         if (pageable.getPageNumber() == 0) {
             return postCacheService.getFirstPostPage();
