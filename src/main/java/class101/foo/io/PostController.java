@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class PostController {
     public Page<Post> getPostList(@PageableDefault(size = 20) Pageable pageable,
                                   @RequestParam(name = "content", required = false) String content) {
 
-        if (pageable.getPageNumber() == 0) {
+        if (pageable.getPageNumber() == 0 && StringUtils.isEmpty(content)) {
             return postCacheService.getFirstPostPage();
         }
 
