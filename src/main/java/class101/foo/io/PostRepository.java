@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Page<Post> findAllByContentLike(Pageable pageable, String content);
+    Page<Post> findAllByContentContains(Pageable pageable, String content);
 }

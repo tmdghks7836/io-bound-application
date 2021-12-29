@@ -46,8 +46,7 @@ public class PostController {
             return postCacheService.getFirstPostPage();
         }
 
-        return postRepository.findAllByContentLike(pageable,
-                new StringBuilder().append("%").append(content).append("%").toString());
+        return postRepository.findAllByContentContains(pageable, content);
     }
 
     @GetMapping("/posts/{id}")
